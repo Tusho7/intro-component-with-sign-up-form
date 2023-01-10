@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
-import Icon from "./Icons/icon-error.svg";
+import Icon from "../Icons/icon-error.svg";
 
 type Inputs = {
   firstname: string;
