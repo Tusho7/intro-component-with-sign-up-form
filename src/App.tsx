@@ -1,6 +1,26 @@
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form/dist/types";
+import Icon from "./Icons/icon-error.svg";
+
+type Inputs = {
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+};
 
 function App() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data);
+  };
+
   return (
     <div className="App">
       <MainContainer>
@@ -21,18 +41,123 @@ function App() {
           </Button>
 
           <Inputs>
-            <form>
-              <input />
-              <input />
-              <input />
-              <input />
+            <form onSubmit={handleSubmit(onSubmit)}>
+              {errors.firstname === undefined ? (
+                <Input
+                  placeholder="First Name"
+                  {...register("firstname", {
+                    required: "First Name cannot be empty",
+                  })}
+                />
+              ) : (
+                <Input
+                  style={{
+                    border: "2px solid red",
+                    backgroundImage: `url(${Icon})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "90% 50%",
+                  }}
+                  {...register("firstname", {
+                    required: "First Name cannot be empty",
+                  })}
+                />
+              )}
+              {errors.firstname && (
+                <ErrorMessage>{errors.firstname.message}</ErrorMessage>
+              )}
+
+              {errors.lastname === undefined ? (
+                <Input
+                  placeholder="Last Name"
+                  {...register("lastname", {
+                    required: "Last Name cannot be empty",
+                  })}
+                />
+              ) : (
+                <Input
+                  style={{
+                    border: "2px solid red",
+                    backgroundImage: `url(${Icon})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "90% 50%",
+                  }}
+                  {...register("lastname", {
+                    required: "Last Name cannot be empty",
+                  })}
+                />
+              )}
+              {errors.lastname && (
+                <ErrorMessage>{errors.lastname.message}</ErrorMessage>
+              )}
+
+              {errors.email === undefined ? (
+                <Input
+                  placeholder="Email Address"
+                  {...register("email", {
+                    required: "Looks like this is not an email",
+                    pattern: {
+                      value:
+                        /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+                      message: "Looks like this is not an email",
+                    },
+                  })}
+                />
+              ) : (
+                <Input
+                  style={{
+                    border: "2px solid red",
+                    backgroundImage: `url(${Icon})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "90% 50%",
+                  }}
+                  {...register("email", {
+                    required: "Looks like this is not an email",
+                  })}
+                />
+              )}
+
+              {errors.email && (
+                <ErrorMessage>{errors.email.message}</ErrorMessage>
+              )}
+
+              {errors.password === undefined ? (
+                <Input
+                  type="password"
+                  placeholder="Password"
+                  {...register("password", {
+                    required: "Password cannot be empty",
+                  })}
+                />
+              ) : (
+                <Input
+                  style={{
+                    border: "2px solid red",
+                    backgroundImage: `url(${Icon})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "90% 50%",
+                  }}
+                  {...register("password", {
+                    required: "Password cannot be empty",
+                  })}
+                />
+              )}
+
+              {errors.password && (
+                <ErrorMessage>{errors.password.message}</ErrorMessage>
+              )}
+
+              <ClaimButton>CLAIM YOUR FIRST TRIAL</ClaimButton>
             </form>
 
-            <button>CLAIM YOUR FIRST TRIAL</button>
-            <div>
-              <p></p>
-              <p></p>
-            </div>
+            <Footer>
+              <FooterFirstText>
+                By clicking the button, you are agreeing to
+              </FooterFirstText>
+              <p>
+                <FooterFirstText>our </FooterFirstText>
+                <FooterSecondText>Terms and Services</FooterSecondText>
+              </p>
+            </Footer>
           </Inputs>
         </Container>
       </MainContainer>
@@ -109,4 +234,73 @@ const Inputs = styled.div`
   box-shadow: 0px 8px 0px rgba(0, 0, 0, 0.14688);
   border-radius: 10px;
   text-align: center;
+`;
+
+const Input = styled.input`
+  width: 85%;
+  padding: 15px 0px 18px 19px;
+  background: #ffffff;
+  border: 1px solid #dedede;
+  border-radius: 5px;
+
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 26px;
+  letter-spacing: 0.25px;
+  color: #3d3b48;
+  mix-blend-mode: normal;
+  opacity: 0.75;
+  &:not(:first-child) {
+    margin-top: 16px;
+  }
+  &:first-child {
+    margin-top: 24px;
+  }
+`;
+
+const ErrorMessage = styled.p`
+  width: 85%;
+  margin: auto;
+  margin-top: 6px;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  text-align: right;
+  color: #ff7979;
+`;
+
+const ClaimButton = styled.button`
+  background: #38cc8b;
+  box-shadow: inset 0px -4px 0px rgba(0, 0, 0, 0.0908818);
+  border-radius: 5px;
+  border: none;
+  width: 85%;
+  padding: 15px 30px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 26px;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #ffffff;
+`;
+
+const Footer = styled.div`
+  width: 78%;
+  margin: auto;
+  padding-bottom: 24px;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 21px;
+  text-align: center;
+`;
+
+const FooterFirstText = styled.span`
+  color: #bab7d4;
+`;
+
+const FooterSecondText = styled.span`
+  color: rgba(255, 121, 121, 1);
 `;
