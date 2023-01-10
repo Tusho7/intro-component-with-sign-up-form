@@ -172,12 +172,22 @@ const MainContainer = styled.div`
   flex-direction: column;
   gap: 64px;
   padding: 88px 24px 64px 24px;
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    gap: 45px;
+    align-items: center;
+    padding: 121px 165px;
+  }
 `;
 
 const TextDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  @media (min-width: 1440px) {
+    max-width: 37vw;
+    gap: 20px;
+  }
 `;
 
 const FirstText = styled.p`
@@ -187,6 +197,12 @@ const FirstText = styled.p`
   text-align: center;
   letter-spacing: -0.291667px;
   color: #ffffff;
+  @media (min-width: 1440px) {
+    text-align: left;
+    font-size: 50px;
+    line-height: 55px;
+    letter-spacing: -0.520833px;
+  }
 `;
 
 const SecondText = styled.p`
@@ -195,12 +211,21 @@ const SecondText = styled.p`
   line-height: 26px;
   text-align: center;
   color: #ffffff;
+  @media (min-width: 1440px) {
+    text-align: left;
+    font-size: 16px;
+    line-height: 26px;
+  }
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  @media (min-width: 1440px) {
+    min-width: 37vw;
+    position: relative;
+  }
 `;
 
 const Button = styled.button`
@@ -216,7 +241,7 @@ const ButtonFirstText = styled.p`
   font-size: 15px;
   line-height: 26px;
   text-align: center;
-  letter-spacing: 0.267857px;
+  letter-spacing: 0.2px;
   color: #ffffff;
 `;
 
@@ -225,7 +250,7 @@ const ButtonSecondText = styled.p`
   font-size: 15px;
   line-height: 26px;
   text-align: center;
-  letter-spacing: 0.267857px;
+  letter-spacing: 0.2px;
   color: #ffffff;
 `;
 
@@ -256,6 +281,17 @@ const Input = styled.input`
   &:first-child {
     margin-top: 24px;
   }
+
+  @media (min-width: 1440px) {
+    padding: 15px 0px 15px 32px;
+    width: 84%;
+    &:not(:first-child) {
+      margin-top: 42px;
+    }
+    &:first-child {
+      margin-top: 40px;
+    }
+  }
 `;
 
 const ErrorMessage = styled.p`
@@ -267,6 +303,11 @@ const ErrorMessage = styled.p`
   line-height: 16px;
   text-align: right;
   color: #ff7979;
+  @media (min-width: 1440px) {
+    position: absolute;
+    margin: 6px auto 19px auto;
+    left: 35px;
+  }
 `;
 
 const ClaimButton = styled.button`
@@ -285,6 +326,13 @@ const ClaimButton = styled.button`
   text-align: center;
   letter-spacing: 1px;
   color: #ffffff;
+  &:hover {
+    background: #77e2b3;
+    cursor: pointer;
+  }
+  @media (min-width: 1440px) {
+    margin-top: 42px;
+  }
 `;
 
 const Footer = styled.div`
@@ -295,6 +343,10 @@ const Footer = styled.div`
   font-size: 11px;
   line-height: 21px;
   text-align: center;
+  @media (min-width: 1440px) {
+    display: flex;
+    width: 69%;
+  }
 `;
 
 const FooterFirstText = styled.span`
